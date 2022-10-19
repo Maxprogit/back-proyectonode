@@ -13,10 +13,21 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json())
 
 //conexion a la base de datos
-
+console.log(process.env)
+const uri = `mongodb+srv://${process.env.USUARIO}mariionette:${process.env.PASSWORD}<password>@cluster0.sigiqsa.mongodb.net/${process.env.DBNAME}`
+mongoose.connect(uri,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Conectado a BD')
+}).catch(e => {
+    console.log('error: ', e)
+})
 //importar rutas
+const authRoutes = require('./routes/auth')
 
 //ruta del middleware
+app.use('/api/user', authRoutes)
 
 app.get('/', (req,res) => {
     res.json({
