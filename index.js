@@ -13,8 +13,8 @@ app.use(bodyparser.urlencoded({
 app.use(bodyparser.json())
 
 //conexion a la base de datos
-console.log(process.env)
-const uri = `mongodb+srv://${process.env.USUARIO}mariionette:${process.env.PASSWORD}<password>@cluster0.sigiqsa.mongodb.net/${process.env.DBNAME}`
+//console.log(process.env.USERNAME, process.env.DBNAME)
+const uri = `mongodb+srv://mariionette:Vizicsaczi1@cluster0.sigiqsa.mongodb.net/test${process.env.DBNAME}test`
 mongoose.connect(uri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
